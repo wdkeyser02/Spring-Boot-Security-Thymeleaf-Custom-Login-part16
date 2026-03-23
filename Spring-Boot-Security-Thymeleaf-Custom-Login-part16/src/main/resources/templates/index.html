@@ -22,7 +22,9 @@
 		<p style="text-align: center;"><a href='/login'>Login</a></p>
 	</div>
 	<div sec:authorize="isAuthenticated()">
-		<p style="text-align: center;"><a href='/logout'>Logout</a></p>
+		<form style="text-align: center;" th:action="@{/logout}" method="post">
+			<button type="submit" style="background: none; border: none; color: #00e; text-decoration: underline; cursor: pointer;">Logout</button>
+		</form>
 	</div>
 	<p>&nbsp;</p>
 	<div sec:authorize="isAuthenticated()">

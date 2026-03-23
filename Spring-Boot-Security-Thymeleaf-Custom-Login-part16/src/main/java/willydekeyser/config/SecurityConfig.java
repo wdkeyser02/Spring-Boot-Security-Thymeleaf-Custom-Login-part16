@@ -15,14 +15,16 @@ public class SecurityConfig {
         http
                 //.httpBasic(Customizer.withDefaults())
                 .formLogin(login -> login
+                		.loginPage("/login")
                         .defaultSuccessUrl("/", true)
                         .permitAll())
                 .logout(logout -> logout
+                		.logoutUrl("/logout")
                         .logoutSuccessUrl("/")
                         .deleteCookies("JSESSIONID")
                         .permitAll())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/", "/public").permitAll()
+                        .requestMatchers("/", "/public", "/main.css", "/favicon.ico").permitAll()
                         .requestMatchers("/user/**").hasRole("USER")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
